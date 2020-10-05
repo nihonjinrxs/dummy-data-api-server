@@ -1,0 +1,20 @@
+{
+  "name": "dummy-server",
+  "version": "1.0.0",
+  "description": "Dummy API server ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "Ryan B. Harvey (rharvey@loyno.edu)",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1"
+  }
+}
