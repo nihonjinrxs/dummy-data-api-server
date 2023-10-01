@@ -1,10 +1,10 @@
 {
   "name": "dummy-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Dummy API server ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "jest"
   },
   "author": "Ryan B. Harvey (rharvey@loyno.edu)",
