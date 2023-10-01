@@ -25,6 +25,13 @@ app.get('/data', (req, res) => {
   });
 });
 
+async function closeGracefully(signal) {
+  console.log(`Received signal to terminate: ${signal}`)
+  process.exit(1)
+}
+process.on('SIGINT', closeGracefully)
+process.on('SIGTERM', closeGracefully)
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
