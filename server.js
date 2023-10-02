@@ -20,26 +20,29 @@ app.get('/', (req, res) => {
 
 app.get('/data', (req, res) => {
   let queryFrom, queryCount, startId, endId;
+  const dataLength = data.length;
+  const maxPageSize = 500;
+  const defaultPageSize = 100;
 
   console.log(req.query);
 
   if (req.query.count) {
     queryCount = parseInt(req.query.count, 10);
-    if (isNaN(queryCount)) { queryCount = 100; }
-    queryCount = Math.max(Math.min(queryCount, 500), 1);
+    if (isNaN(queryCount)) { queryCount = defaultPageSize; }
+    queryCount = Math.max(Math.min(queryCount, maxPageSize), 1);
   } else {
-    queryCount = 100;
+    queryCount = defaultPageSize;
   }
 
   if (req.query.from) {
     queryFrom = parseInt(req.query.from, 10);
-    if (isNaN(queryFrom)) { queryFrom = 1000 - queryCount; }
+    if (isNaN(queryFrom)) { queryFrom = dataLength - queryCount; }
   } else {
-    queryFrom = 1000 - queryCount;
+    queryFrom = dataLength - queryCount;
   }
 
-  startId = Math.max(Math.min(queryFrom, 1000), 1);
-  endId = Math.min(startId + queryCount, 1000);
+  startId = Math.max(Math.min(queryFrom, dataLength), 1);
+  endId = Math.min(startId + queryCount, dataLength);
 
   res.status(200).json({
     count: endId - startId,
