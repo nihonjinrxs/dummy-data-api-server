@@ -10,7 +10,9 @@ FROM node:20.8.0-alpine3.18
 RUN apk add dumb-init
 USER node
 ENV NODE_ENV production
+ENV PORT 3000
 WORKDIR /usr/src/app
 COPY --chown=node:node --from=build /usr/src/app/node_modules /usr/src/app/node_modules
 COPY --chown=node:node . /usr/src/app
 CMD ["dumb-init", "node", "server.js"]
+EXPOSE ${PORT}
